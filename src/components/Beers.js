@@ -27,11 +27,12 @@ export default class Beers extends Component {
         <Navbar/>
         <div>
             {this.state.data.map((item, index) => {
+                console.log(item)
                 return (
                     <div key={index}>
                     <div className='beerContainer'>
                     <Link to={{
-                        pathname:'/beer-detail',
+                        pathname:`/beers/${item._id}`,
                         state: item
                     }}>
                         <div className='imageContainer'>

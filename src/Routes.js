@@ -12,7 +12,7 @@ const Routes = () => (
         <Route exact path='/beers' component={Beers}/>
         <Route exact path='/new-beer' component = {NewBeer}/>
         <Route exact path='/random-beer' component = {RandomBeer}/>
-        <Route exact path='/beer-detail' component = {BeerDetail}/>
+        <Route exact path='/beers/:beerId' component = {BeerDetail}/>
     </Switch>
 )
 

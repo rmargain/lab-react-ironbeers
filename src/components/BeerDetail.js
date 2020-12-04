@@ -1,30 +1,39 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {Navbar} from './Navbar'
 import axios from 'axios'
 
 
 
-export const BeerDetail = ({location}) => {
+export const BeerDetail = (props) => {
+     const [data, setData] = useState([])
+     const fetchData = async() =>{
+        const res = await axios.get(`https://ih-beers-api2.herokuapp.com/beers/${props.match.params.beerId}`)
+        const json = await res.data
+        setData(json)
+    }
+    useEffect(() => {
+         fetchData()}, []
+    )
     return (
         <div>
         <Navbar/>
             <div>
                 <div>
-                    <img src={location.state.image_url} />
+                    <img src={data.image_url} />
                 </div>
                 <div>
-                    <h2>{location.state.name}</h2>
-                    <span>{location.state.attenuation_level}</span>
+                    <h2>{data.name}</h2>
+                    <span>{data.attenuation_level}</span>
                 </div>
                 <div>
-                    <h3>{location.state.tagline}</h3>
-                    <span>{location.state.first_brewed}</span>
+                    <h3>{data.tagline}</h3>
+                    <span>{data.first_brewed}</span>
                 </div>
                 <div>
-                    <p>{location.state.description}</p>
+                    <p>{data.description}</p>
                 </div>
                 <div>
-                    <p>{location.state.contributed_by}</p>
+                    <p>{data.contributed_by}</p>
                 </div>
             </div>
                 
